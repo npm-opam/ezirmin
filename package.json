@@ -1,0 +1,65 @@
+{
+    "name": "ezirmin-actual",
+    "exportedEnvVars": {
+        "CAML_LD_LIBRARY_PATH": {
+            "global": true,
+            "resolveAsRelativePath": true,
+            "globalCollisionBehavior": "joinPath",
+            "val": "./_build/ocamlfind/lib/stublibs"
+        },
+        "ezirmin_installed": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "true"
+        },
+        "FINDLIB": {
+            "global": true,
+            "resolveAsRelativePath": true,
+            "globalCollisionBehavior": "joinPath",
+            "val": "./_build/ocamlfind/lib"
+        },
+        "version": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "0.1.0"
+        },
+        "ezirmin_enable": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "enable"
+        },
+        "PATH": {
+            "global": true,
+            "resolveAsRelativePath": true,
+            "globalCollisionBehavior": "joinPath",
+            "val": "./_build/ocamlfind/bin"
+        },
+        "ezirmin_version": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "0.1.0"
+        }
+    },
+    "version": "0.1.0",
+    "dependencies": {
+        "@opam-alpha/ptime": "*",
+        "@opam-alpha/topkg": "*",
+        "@opam-alpha/ocamlfind": "*",
+        "@opam-alpha/ppx_jane": "*",
+        "dependency-env": "*",
+        "substs": "https://github.com/yunxing/substs.git",
+        "@opam-alpha/ocamlbuild": "*",
+        "@opam-alpha/irmin-watcher": "*",
+        "@opam-alpha/git-unix": "*",
+        "@opam-alpha/lwt": "*",
+        "nopam": "*",
+        "opam-installer-bin": "https://github.com/yunxing/opam-installer-bin.git",
+        "@opam-alpha/irmin": ">= 0.12.0"
+    },
+    "scripts": {
+        "postinstall": "eval $(dependencyEnv) && nopam && ocaml pkg/pkg.ml build --pinned \"false\" && (opam-installer --prefix=$opam_prefix || true)"
+    },
+    "peerDependencies": {
+        "@opam-alpha/ocaml": ">= 4.01.0"
+    }
+}
